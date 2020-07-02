@@ -21,15 +21,15 @@
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="事由 我在本地的typora上完成markdown的写作之后，直接进行了hexo的部署，中间有一段时间我都没有打开blog，直到某一天，我打开blog，却惊奇的发现原来hexo自带的引擎无法渲染数学公式！ 解决办法 安装kramed 按照其他blog的经验，我首先安装了kramed，其过程非常的简单：  首先要移除hexo自带的marked 1npm uninstall hexo-renderer">
+    <meta name="description" content="事由 我在本地的typora上完成markdown的写作之后，直接进行了hexo的部署，中间有一段时间我都没有打开blog，直到某一天，我打开blog，却惊奇的发现原来hexo自带的引擎无法渲染数学公式！ 解决办法 安装kramed 按照其他blog的经验，我首先安装了kramed，其过程非常的简单： 首先要移除hexo自带的marked 1npm uninstall hexo-renderer-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设置hexo中的mathjax">
 <meta property="og:url" content="https://cugbbaiyun.github.io/2020/07/03/%E8%AE%BE%E7%BD%AEhexo%E4%B8%AD%E7%9A%84mathjax/index.html">
 <meta property="og:site_name" content="cugbbaiyun">
-<meta property="og:description" content="事由 我在本地的typora上完成markdown的写作之后，直接进行了hexo的部署，中间有一段时间我都没有打开blog，直到某一天，我打开blog，却惊奇的发现原来hexo自带的引擎无法渲染数学公式！ 解决办法 安装kramed 按照其他blog的经验，我首先安装了kramed，其过程非常的简单：  首先要移除hexo自带的marked 1npm uninstall hexo-renderer">
+<meta property="og:description" content="事由 我在本地的typora上完成markdown的写作之后，直接进行了hexo的部署，中间有一段时间我都没有打开blog，直到某一天，我打开blog，却惊奇的发现原来hexo自带的引擎无法渲染数学公式！ 解决办法 安装kramed 按照其他blog的经验，我首先安装了kramed，其过程非常的简单： 首先要移除hexo自带的marked 1npm uninstall hexo-renderer-">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-02T16:19:33.000Z">
-<meta property="article:modified_time" content="2020-07-02T16:31:53.255Z">
+<meta property="article:modified_time" content="2020-07-02T16:32:38.782Z">
 <meta property="article:author" content="cugbbaiyun">
 <meta name="twitter:card" content="summary">
     
@@ -177,10 +177,8 @@
 <h2 id="解决办法">解决办法</h2>
 <h3 id="安装kramed">安装kramed</h3>
 <p>按照其他blog的经验，我首先安装了kramed，其过程非常的简单：</p>
-<ul>
-<li><p>首先要移除hexo自带的marked <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure></p></li>
-<li><p>安装kramed <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure> 这样，行间公式（$$...$$)的渲染已经可以进行了，但是行内公式($$...$$)的渲染还有问题。 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim node_modules\kramed\lib\rules\inline.js</span><br><span class="line">更改下面escape：</span><br><span class="line">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span><br><span class="line">  escape: /^\\([`*\[\]()#$+\-.!_&gt;])/</span><br><span class="line">以及em:</span><br><span class="line">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br><span class="line">  em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span><br></pre></td></tr></table></figure> 接下来则是重启hexo <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p></li>
-</ul>
+<p>首先要移除hexo自带的marked <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure></p>
+<p>安装kramed <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure> 这样，行间公式的渲染已经可以进行了，但是行内公式渲染还有问题。 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim node_modules\kramed\lib\rules\inline.js</span><br><span class="line">更改下面escape：</span><br><span class="line">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span><br><span class="line">  escape: /^\\([`*\[\]()#$+\-.!_&gt;])/</span><br><span class="line">以及em:</span><br><span class="line">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br><span class="line">  em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span><br></pre></td></tr></table></figure> 接下来则是重启hexo <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p>
 
         </div>
 
@@ -189,7 +187,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-07-02T16:31:53.255Z" itemprop="dateUpdated">2020-07-03 00:31:53</time>
+    Last updated: <time datetime="2020-07-02T16:32:38.782Z" itemprop="dateUpdated">2020-07-03 00:32:38</time>
 </span><br>
 
 
