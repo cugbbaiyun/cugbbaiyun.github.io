@@ -29,7 +29,7 @@
 <meta property="og:description" content="事由 我在本地的typora上完成markdown的写作之后，直接进行了hexo的部署，中间有一段时间我都没有打开blog，直到某一天，我打开blog，却惊奇的发现原来hexo自带的引擎无法渲染数学公式！ 解决办法 安装kramed 按照其他blog的经验，我首先安装了kramed，其过程非常的简单：  首先要移除hexo自带的marked 1npm uninstall hexo-renderer">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-07-02T16:19:33.000Z">
-<meta property="article:modified_time" content="2020-07-02T16:33:53.272Z">
+<meta property="article:modified_time" content="2020-07-02T16:39:03.023Z">
 <meta property="article:author" content="cugbbaiyun">
 <meta name="twitter:card" content="summary">
     
@@ -179,7 +179,7 @@
 <p>按照其他blog的经验，我首先安装了kramed，其过程非常的简单：</p>
 <ul>
 <li><p>首先要移除hexo自带的marked <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br></pre></td></tr></table></figure></p></li>
-<li><p>安装kramed <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure> 这样，行间公式的渲染已经可以进行了，但是行内公式渲染还有问题。 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim node_modules\kramed\lib\rules\inline.js</span><br><span class="line">更改下面escape：</span><br><span class="line">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span><br><span class="line">  escape: /^\\([`*\[\]()#$+\-.!_&gt;])/</span><br><span class="line">以及em:</span><br><span class="line">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br><span class="line">  em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span><br></pre></td></tr></table></figure> 接下来则是重启hexo <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></p></li>
+<li><p>安装kramed <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure> 这样，行间公式的渲染已经可以进行了，但是行内公式渲染还有问题。 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim node_modules\kramed\lib\rules\inline.js</span><br><span class="line">更改下面escape：</span><br><span class="line">//  escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span><br><span class="line">  escape: /^\\([`*\[\]()#$+\-.!_&gt;])/</span><br><span class="line">以及em:</span><br><span class="line">//  em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br><span class="line">  em: /^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span><br></pre></td></tr></table></figure> 接下来则是重启hexo <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure> 然而，经过我实际测试之后，行内公式仍然无法起作用，bug在于行内公式的_仍然被渲染为下标。 ### pandoc 继续查找blog，发现另一个工具pandoc，直接拿来试一试。 安装panddoc: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-pandoc --save</span><br></pre></td></tr></table></figure> 安装完毕，重新测试，很ok。</p></li>
 </ul>
 
         </div>
@@ -189,7 +189,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2020-07-02T16:33:53.272Z" itemprop="dateUpdated">2020-07-03 00:33:53</time>
+    Last updated: <time datetime="2020-07-02T16:39:03.023Z" itemprop="dateUpdated">2020-07-03 00:39:03</time>
 </span><br>
 
 
